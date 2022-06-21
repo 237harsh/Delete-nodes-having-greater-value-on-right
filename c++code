@@ -1,0 +1,54 @@
+class Solution
+{
+    public:
+    Node *compute(Node *head)
+    {
+       //reverse a link list and cheak from behind if max then make new node and update values/
+       //finally reverse link list
+       
+      
+     Node *curr=head,*prev=NULL,*next;
+     while(curr!=NULL)
+     {
+         next=curr->next;
+         curr->next=prev;
+         prev=curr;
+         curr=next;
+     }
+     head=prev;
+     Node *c2=prev;
+    int max=0;
+     
+     Node *d=new Node(-1);
+       Node *t=d;
+       d->next=head;
+     while(c2!=NULL)
+     {
+         if(c2->data>=max)
+         {
+             max=c2->data;
+              Node *n=new Node(c2->data);
+              t->next=n;
+              t=n;
+         }
+         
+         
+         c2=c2->next;
+     }
+     
+     curr=d->next,prev=NULL;
+     while(curr!=NULL)
+     {
+         next=curr->next;
+         curr->next=prev;
+         prev=curr;
+         curr=next;
+     }
+     return prev;
+  
+    }
+    
+    
+    
+};
+  
